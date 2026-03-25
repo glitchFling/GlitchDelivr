@@ -1,3 +1,4 @@
+import AccessGate from 'libs/security/AccessGate.js';
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -40,7 +41,7 @@ export default {
 
     // 5. Save to Cache and Return
     ctx.waitUntil(cache.put(request, response.clone()));
-
+    
     return response;
   },
 };
