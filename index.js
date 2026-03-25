@@ -1,4 +1,4 @@
-import AccessGate from 'libs/security/AccessGate.js';
+import AccessGate from './libs/security/AccessGate.js';
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
