@@ -1,0 +1,14 @@
+{
+  "name": "glitchdelivr",
+  "main": "index.js",
+  "compatibility_date": "2024-03-25",
+  "r2_buckets": [
+    {
+      "binding": "GLITCHDELIVR_R2",
+      "bucket_name": "glitchdelivr-r2"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
