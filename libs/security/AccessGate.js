@@ -436,3 +436,5 @@ AccessGate.start().then((result) => {
         console.log("AccessGate ID:", result.id);
     }
 });
+
+export default AccessGate;
