@@ -2,6 +2,7 @@
   "name": "glitchdelivr",
   "main": "index.js",
   "compatibility_date": "2024-03-25",
+  "type": "module",
   "r2_buckets": [
     {
       "binding": "GLITCHDELIVR_R2",
