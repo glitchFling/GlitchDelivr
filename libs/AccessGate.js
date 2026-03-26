@@ -381,3 +381,4 @@ const AccessGate = {
 };
 
 export default AccessGate;
+export { AccessGate };
