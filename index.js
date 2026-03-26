@@ -36,6 +36,14 @@ export default {
         status: 200
       });
     }
+    if (url.pathname === "/debug") {
+  return new Response(JSON.stringify({
+    accessGateType: typeof AccessGate,
+    accessGateKeys: Object.keys(AccessGate)
+  }, null, 2), {
+    headers: { "Content-Type": "application/json" }
+  });
+}
 
     // Edge cache
     const cache = caches.default;
