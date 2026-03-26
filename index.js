@@ -21,7 +21,7 @@ export default {
 
     if (!isAdmin) {
       return new Response("Forbidden: Admin Access Only", {
-        status: 403,
+        status: 200,
         headers: { "Content-Type": "text/plain" }
       });
     }
