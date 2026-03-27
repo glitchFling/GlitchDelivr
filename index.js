@@ -7,19 +7,13 @@ export default {
     const UserID = await AccessGate._deterministicFallbackId();
 
 if (UserID === "det_22d9ac0bfd878d0db119826b1078e088a778f26a0d074f2b") {
+  // Does Nothing, Move On.
+} else {
   return new Response("Unauthorized: Default AccessGate ID detected.", {
     status: 401,
     headers: { "Content-Type": "text/plain" }
   });
 }
-
-// Any code down here only runs if the ID DOES NOT match
-
-    console.log("AccessGate import:", AccessGate);
-    return new Response("AccessGate import: " + await AccessGate._deterministicFallbackId(), {
-      status: 200
-    });
-
     // --- The rest of your code (will not be reached because of the return above) ---
     AccessGate.config = {
       ...AccessGate.config,
