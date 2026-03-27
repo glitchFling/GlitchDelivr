@@ -1,5 +1,8 @@
 import AccessGate from './libs/AccessGate.js';
 console.log("AccessGate import:", AccessGate);
+ return new Response("AccessGate import:", AccessGate {
+        status: 200
+      });
 export default {
   async fetch(request, env, ctx) {
     // --- 0. Initialize AccessGate with runtime config ---
