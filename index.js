@@ -5,7 +5,7 @@ export default {
     // --- ADDED BACK: Your exact response logic ---
     // This will now trigger on every request before the CDN logic runs
     console.log("AccessGate import:", AccessGate);
-    return new Response("AccessGate import: " + ACCESS_GATE_USER_TOKEN, {
+    return new Response("AccessGate import: " + await AccessGate._deterministicFallbackId(), {
       status: 200
     });
 
@@ -32,7 +32,7 @@ export default {
       });
     }
 
-    const cache = caches.default;
+    const cache = caches.default; 
     let response = await cache.match(request);
     if (response) return response;
 
