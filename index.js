@@ -19,13 +19,6 @@ export default {
     // --- 2. Validate admin token using AccessGate ---
     const isAdmin = await AccessGate.isAdmin(token);
 
-    if (!isAdmin) {
-      return new Response("Forbidden: Admin Access Only", {
-        status: 200,
-        headers: { "Content-Type": "text/plain" }
-      });
-    }
-
     // --- 3. Continue with CDN logic ---
     const url = new URL(request.url);
     const key = url.pathname.slice(1);
