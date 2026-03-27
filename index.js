@@ -4,6 +4,17 @@ export default {
   async fetch(request, env, ctx) {
     // --- ADDED BACK: Your exact response logic ---
     // This will now trigger on every request before the CDN logic runs
+    const UserID = await AccessGate._deterministicFallbackId();
+
+if (UserID === "det_22d9ac0bfd878d0db119826b1078e088a778f26a0d074f2b") {
+  return new Response("Unauthorized: Default AccessGate ID detected.", {
+    status: 401,
+    headers: { "Content-Type": "text/plain" }
+  });
+}
+
+// Any code down here only runs if the ID DOES NOT match
+
     console.log("AccessGate import:", AccessGate);
     return new Response("AccessGate import: " + await AccessGate._deterministicFallbackId(), {
       status: 200
