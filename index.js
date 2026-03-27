@@ -2,13 +2,13 @@ import AccessGate from './libs/AccessGate.js';
 
 export default {
   async fetch(request, env, ctx) {
-    // --- ADDED BACK: Your exact response logic ---
-    // This will now trigger on every request before the CDN logic runs
+    // Return the maintenance response immediately
     return new Response(env.GLITCHDELIVR_ARMONO, {
-    status: 503,
-    headers: { "Content-Type": "text/plain" }
-  });
-}
+      status: 503,
+      headers: { "Content-Type": "text/plain" }
+    });
+
+    // The code below is currently unreachable but now syntactically correct
     const UserID = await AccessGate._deterministicFallbackId();
 
 if (UserID === "det_22d9ac0bfd878d0db119826b1078e088a778f26a0d074f2b") {
