@@ -12,7 +12,7 @@ if (UserID === "det_22d9ac0bfd878d0db119826b1078e088a778f26a0d074f2b") {
     headers: { "Content-Type": "text/plain" }
   });
 }
-    // --- The rest of your code (will not be reached because of the return above) ---
+    // --- AccessGate admin config ---
     AccessGate.config = {
       ...AccessGate.config,
       adminToken: env.ACCESS_GATE_ADMIN_TOKEN || "",
@@ -26,8 +26,11 @@ if (UserID === "det_22d9ac0bfd878d0db119826b1078e088a778f26a0d074f2b") {
       "";
 
     const isAdmin = await AccessGate.isAdmin(token);
+
     const url = new URL(request.url);
-    const key = url.pathname.slice(1);
+
+    // Decode path so spaced filenames work
+    const key = decodeURIComponent(url.pathname.slice(1));
 
     if (key === "") {
       return new Response("glitchdelivr CDN (admin-only) is active.", {
@@ -35,10 +38,12 @@ if (UserID === "det_22d9ac0bfd878d0db119826b1078e088a778f26a0d074f2b") {
       });
     }
 
-    const cache = caches.default; 
+    // --- Edge cache ---
+    const cache = caches.default;
     let response = await cache.match(request);
     if (response) return response;
 
+    // --- Fetch from R2 ---
     const object = await env.GLITCHDELIVR_R2.get(key);
     if (!object) {
       return new Response("Object Not Found", {
@@ -53,6 +58,7 @@ if (UserID === "det_22d9ac0bfd878d0db119826b1078e088a778f26a0d074f2b") {
     headers.set("Cache-Control", "public, max-age=3600");
 
     response = new Response(object.body, { headers });
+
     ctx.waitUntil(cache.put(request, response.clone()));
     return response;
   }
