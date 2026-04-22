@@ -56,6 +56,8 @@ if (UserID === "det_22d9ac0bfd878d0db119826b1078e088a778f26a0d074f2b") {
     object.writeHttpMetadata(headers);
     headers.set("etag", object.httpEtag);
     headers.set("Cache-Control", "public, max-age=3600");
+    headers.set("Access-Control-Allow-Origin", "*");
+    headers.set("Content-Type", "application/javascript"); 
 
     response = new Response(object.body, { headers });
 
